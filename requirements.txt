@@ -1,2 +1,2 @@
 python-telegram-bot==12.7
-xlrd
+xlrd==2.0.1
