@@ -2,6 +2,8 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 updater = Updater(token='1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0', use_context=True)
 import os
 PORT = int(os.environ.get('PORT', 5000))
+bot = telegram.Bot(token = "1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0")
+bot.setWebhook("https://altfbot.herokuapp.com/" + "1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0")
 
 dispatcher = updater.dispatcher
 
