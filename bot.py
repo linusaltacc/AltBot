@@ -7,6 +7,10 @@ import os
 PORT = int(os.environ.get('PORT', 5000))
 bot = telegram.Bot(token = "1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0")
 bot.setWebhook("https://altfbot.herokuapp.com/" + "1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0")
+<<<<<<< HEAD
+=======
+
+>>>>>>> df4f14cc51d7fad53bce4e7fcf60e5249546b89a
 dispatcher = updater.dispatcher
 
 #Just logging ignore..
@@ -107,7 +111,7 @@ dispatcher.add_handler(unknown_handler)
 
 ##add things 
 updater.start_webhook(listen="0.0.0.0",port=int(PORT),url_path='1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0')
-updater.bot.setWebhook('https://frozen-coast-16988.herokuapp.com/' + '1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0')
+updater.bot.setWebhook('https://altfbot.herokuapp.com/' + '1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0')
 
 
 

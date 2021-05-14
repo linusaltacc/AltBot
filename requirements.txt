@@ -1,4 +1,8 @@
 python-telegram-bot==12.7
+<<<<<<< HEAD
 xlrd
 flask 
 requests
+=======
+xlrd==2.0.1
+>>>>>>> df4f14cc51d7fad53bce4e7fcf60e5249546b89a

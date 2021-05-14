@@ -1,1 +1,1 @@
-web: python3 bot.py
+worker: python AltfBot-Beta.py
