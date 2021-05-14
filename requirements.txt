@@ -1,2 +1,4 @@
 python-telegram-bot==12.7
 xlrd
+flask 
+requests

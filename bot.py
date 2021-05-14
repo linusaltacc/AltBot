@@ -1,8 +1,12 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 updater = Updater(token='1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0', use_context=True)
+from flask import Flask, request
+app = Flask(__name__)
+
 import os
 PORT = int(os.environ.get('PORT', 5000))
-
+bot = telegram.Bot(token = "1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0")
+bot.setWebhook("https://altfbot.herokuapp.com/" + "1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0")
 dispatcher = updater.dispatcher
 
 #Just logging ignore..
@@ -109,3 +113,5 @@ updater.bot.setWebhook('https://frozen-coast-16988.herokuapp.com/' + '1898176973
 
 #-----------------------------------------------------------#
 #seperate functions bellow
+if __name__ == '__main__':
+   app.run(threaded=True)
