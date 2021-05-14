@@ -16,7 +16,7 @@ def enna(update, context):
     try:
         if context.args[0] == "class":
             ########Code for schedule
-            
+	    import xlrd            
             # To open Workbook
             wb = xlrd.open_workbook('classSchedulle.xls')
             sheet = wb.sheet_by_index(0)
