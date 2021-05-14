@@ -1,4 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import xlrd
+from datetime import datetime, time, date
 updater = Updater(token='1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0', use_context=True)
 
 dispatcher = updater.dispatcher
@@ -14,8 +16,7 @@ def enna(update, context):
     try:
         if context.args[0] == "class":
             ########Code for schedule
-            import xlrd
-            from datetime import datetime, time, date
+            
             # To open Workbook
             wb = xlrd.open_workbook('classSchedulle.xls')
             sheet = wb.sheet_by_index(0)
@@ -64,18 +65,22 @@ def enna(update, context):
             else:
                 session = '4 mani mela class irukathu (mostly)'
             ########
+        elif context.args[0] == "date":
+            from datetime import date
+
+            datentime = date.today()
+            #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
+            session = str(datentime)
+        elif context.args[0] == "time":
+            now = datetime.now()
+            time = now.strftime("%H : %M")
+            session = time
         else:
             session = "puriyala"
     except (IndexError, ValueError):
+        context.bot.send_message(chat_id=update.effective_chat.id, text="/enna Command Arguments: \n\t1. class\n\t2. date\n\t3. time")
         session = "/enna command ku arguments onume pass panala!"
     context.bot.send_message(chat_id=update.effective_chat.id, text=session)
-
-from datetime import date
-
-datentime = date.today()
-
-def date(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
 
 # For errors
 def unknown(update, context):
@@ -89,9 +94,6 @@ dispatcher.add_handler(start_handler)
 #for enna command
 enna_handler = CommandHandler('enna', enna)
 dispatcher.add_handler(enna_handler)
-#for date 
-date_handler = CommandHandler('date', date)
-dispatcher.add_handler(date_handler)
 #for echo 
 echo_handler = CommandHandler('echo', echo)
 dispatcher.add_handler(echo_handler)
