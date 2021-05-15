@@ -22,7 +22,9 @@ def enna(update, context):
             sheet = wb.sheet_by_index(0)
             #Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
             from datetime import time, datetime, date
-            now = datetime.now()
+            from dateutil.tz import gettz
+            now = datetime.now(tz=gettz('Asia/Kolkata'))
+            #now = datetime.now()
             hour = int(now.strftime("%H"))
             date = date.today()
             day = date.strftime("%A")
@@ -57,7 +59,7 @@ def enna(update, context):
             elif hour == 12:
                 session = sheet.cell_value(dayy, 4)
             elif hour == 13:
-                session = sheet.cell_value(dayy, 5)
+                session = "Lunch time! Go eat!"
             elif hour == 14:
                 session = sheet.cell_value(dayy, 6)
             elif hour == 15:
@@ -80,7 +82,7 @@ def enna(update, context):
             #timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
             from dateutil.tz import gettz
             time = datetime.now(tz=gettz('Asia/Kolkata'))
-            time.strftime("%H : %M")
+            time = time.strftime("%H : %M")
             session = str(time)
         else:
             session = "puriyala"
