@@ -77,7 +77,8 @@ def enna(update, context):
             from datetime import datetime,time
             now = datetime.now()
             time = now.strftime("%H : %M")
-            session = time
+            timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+            session = timestamp
         else:
             session = "puriyala"
     except (IndexError, ValueError):
