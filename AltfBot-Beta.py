@@ -22,9 +22,9 @@ def enna(update, context):
             sheet = wb.sheet_by_index(0)
             #Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
             from datetime import time, datetime, date
-            from dateutil.tz import gettz
-            now = datetime.now(tz=gettz('Asia/Kolkata'))
-            #now = datetime.now()
+            #from dateutil.tz import gettz
+            #now = datetime.now(tz=gettz('Asia/Kolkata'))
+            now = datetime.now()
             hour = int(now.strftime("%H"))
             date = date.today()
             day = date.strftime("%A")
@@ -77,9 +77,9 @@ def enna(update, context):
             session = str(datentime)
         elif context.args[0] == "time":
             from datetime import datetime,time
-            #now = datetime.now()
+            now = datetime.now()
             #time = now.strftime("%H : %M") 
-            #timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+            #timestamp = datetime.now().strftime('%H:%M:%S.%f')
             from dateutil.tz import gettz
             time = datetime.now(tz=gettz('Asia/Kolkata'))
             time = time.strftime("%H : %M")
