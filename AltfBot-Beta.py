@@ -79,8 +79,9 @@ def enna(update, context):
             #time = now.strftime("%H : %M") 
             #timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
             from dateutil.tz import gettz
-            dtobj = datetime.now(tz=gettz('Asia/Kolkata'))
-            session = dtobj
+            time = datetime.now(tz=gettz('Asia/Kolkata'))
+            time.strftime("%H : %M")
+            session = str(time)
         else:
             session = "puriyala"
     except (IndexError, ValueError):
