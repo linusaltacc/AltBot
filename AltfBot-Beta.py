@@ -17,6 +17,8 @@ def start(update, context):
 def hi(update, context):
     user = update.effective_user
     update.message.reply_markdown_v2(fr'Hi {user.mention_markdown_v2()}\!')
+def beta(update, context):
+    update.message.reply_text("https://t.me/joinchat/ttfV8gOEzWljNTI1")
 def enna(update, context):
     try:
         if context.args[0] == "class":
