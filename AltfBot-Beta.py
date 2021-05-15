@@ -46,7 +46,9 @@ def enna(update, context):
             else:
                 session = 'inaiku Leave uh'
             #example for understanding ::print(sheet.cell_value(monday, 8))
-            if hour == 9:
+            if hour<9:
+                session = "Class usually starts at 9 AM"
+            elif hour == 9:
                 session = sheet.cell_value(dayy, 1)
             elif hour == 10:
                 session = sheet.cell_value(dayy, 2)
@@ -62,7 +64,7 @@ def enna(update, context):
                 session = sheet.cell_value(dayy, 7)
             elif hour == 16:
                 session = sheet.cell_value(dayy, 8)
-            else:
+            elif hour>16:
                 session = '4 mani mela class irukathu (mostly)'
             ########
         elif context.args[0] == "date":
@@ -72,7 +74,7 @@ def enna(update, context):
             #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
             session = str(datentime)
         elif context.args[0] == "time":
-	    from datetime import datetime, time
+            from datetime import datetime,time
             now = datetime.now()
             time = now.strftime("%H : %M")
             session = time
