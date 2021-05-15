@@ -10,8 +10,13 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 def start(update, context):
+    user = update.effective_user
+    update.message.reply_markdown_v2(fr'Hello {user.mention_markdown_v2()}\!')
     context.bot.send_message(chat_id=update.effective_chat.id, text="I'm AltfBot! Whatsup?")
 
+def hi(update, context):
+    user = update.effective_user
+    update.message.reply_markdown_v2(fr'Hi {user.mention_markdown_v2()}\!')
 def enna(update, context):
     try:
         if context.args[0] == "class":
@@ -92,6 +97,9 @@ def echo(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="this command was confidential htf did u know?")
 #calling everytime /start is called
 start_handler = CommandHandler('start', start)
+dispatcher.add_handler(start_handler)
+#for hi command
+start_handler = CommandHandler('hi', hi)
 dispatcher.add_handler(start_handler)
 #for enna command
 enna_handler = CommandHandler('enna', enna)
