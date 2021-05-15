@@ -16,12 +16,12 @@ def enna(update, context):
     try:
         if context.args[0] == "class":
             ########Code for schedule
-	    import xlrd            
+	   # import xlrd
             # To open Workbook
             wb = xlrd.open_workbook('classSchedulle.xls')
             sheet = wb.sheet_by_index(0)
             #Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
-
+            from datetime import time, datetime, date
             now = datetime.now()
             hour = int(now.strftime("%H"))
             date = date.today()
@@ -72,6 +72,7 @@ def enna(update, context):
             #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
             session = str(datentime)
         elif context.args[0] == "time":
+	    from datetime import datetime, time
             now = datetime.now()
             time = now.strftime("%H : %M")
             session = time
