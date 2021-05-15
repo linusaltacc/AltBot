@@ -75,10 +75,12 @@ def enna(update, context):
             session = str(datentime)
         elif context.args[0] == "time":
             from datetime import datetime,time
-            now = datetime.now()
-            time = now.strftime("%H : %M")
-            timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-            session = timestamp
+            #now = datetime.now()
+            #time = now.strftime("%H : %M") 
+            #timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+            from dateutil.tz import gettz
+            dtobj = datetime.now(tz=gettz('Asia/Kolkata'))
+            session = dtobj
         else:
             session = "puriyala"
     except (IndexError, ValueError):
