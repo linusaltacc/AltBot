@@ -18,7 +18,9 @@ def hi(update, context):
     user = update.effective_user
     update.message.reply_markdown_v2(fr'Hi {user.mention_markdown_v2()}\!')
 def beta(update, context):
-    update.message.reply_text("https://t.me/joinchat/ttfV8gOEzWljNTI1")
+    user = update.effective_user
+    update.message.reply_markdown_v2(fr'{user.mention_markdown_v2()} You can Join the Beta Group through the link below\!')
+    context.bot.send_message(chat_id=update.effective_chat.id, text="https://t.me/joinchat/ttfV8gOEzWljNTI1")
 def enna(update, context):
     try:
         if context.args[0] == "class":
@@ -102,6 +104,9 @@ start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 #for hi command
 start_handler = CommandHandler('hi', hi)
+dispatcher.add_handler(start_handler)
+#for beta command
+start_handler = CommandHandler('beta', beta)
 dispatcher.add_handler(start_handler)
 #for enna command
 enna_handler = CommandHandler('enna', enna)
