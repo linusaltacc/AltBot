@@ -22,9 +22,7 @@ def enna(update, context):
             sheet = wb.sheet_by_index(0)
             #Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
             from datetime import time, datetime, date
-            from dateutil.tz import gettz
-            now = datetime.now(tz=gettz('Asia/Kolkata'))
-            #now = datetime.now()
+            now = datetime.now()
             hour = int(now.strftime("%H"))
             date = date.today()
             day = date.strftime("%A")
@@ -70,19 +68,14 @@ def enna(update, context):
             ########
         elif context.args[0] == "date":
             from datetime import date, datetime
-            from dateutil.tz import gettz
-            timestamp = datetime.now(tz=gettz('Asia/Kolkata'))
-            time = timestamp.strftime("%d-%m-%Y")
+            date = datetime.now().strftime("%d-%m-%Y")
             #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
-            session = str(time)
+            session = str(date)
         elif context.args[0] == "time":
             from datetime import datetime,time
             now = datetime.now()
-            #time = now.strftime("%H : %M") 
+            time = now.strftime("%H : %M") 
             #timestamp = datetime.now().strftime('%H:%M:%S.%f')
-            from dateutil.tz import gettz
-            time = datetime.now(tz=gettz('Asia/Kolkata'))
-            time = time.strftime("%H : %M")
             session = str(time)
         else:
             session = "puriyala"
