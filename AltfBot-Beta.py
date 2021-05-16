@@ -1,5 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
+
 from datetime import datetime, time, date
 updater = Updater(token='1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0', use_context=True)
 
@@ -35,6 +36,7 @@ def enna(update, context):
             hour = int(now.strftime("%H"))
             date = date.today()
             day = date.strftime("%A")
+            temp = "other Days"
             if day == 'Monday':
                 dayy = 1
             elif day == 'Tuesday':
@@ -52,28 +54,31 @@ def enna(update, context):
                 dayy = 6
 
             else:
+                temp = "Sunday"
                 session = 'inaiku Leave uh'
             #example for understanding ::print(sheet.cell_value(monday, 8))
-            if hour<9:
-                session = "Class usually starts at 9 AM"
-            elif hour == 9:
-                session = sheet.cell_value(dayy, 1)
-            elif hour == 10:
-                session = sheet.cell_value(dayy, 2)
-            elif hour == 11:
-                session = sheet.cell_value(dayy, 3)
-            elif hour == 12:
-                session = sheet.cell_value(dayy, 4)
-            elif hour == 13:
-                session = "Lunch time! Go eat!"
-            elif hour == 14:
-                session = sheet.cell_value(dayy, 6)
-            elif hour == 15:
-                session = sheet.cell_value(dayy, 7)
-            elif hour == 16:
-                session = sheet.cell_value(dayy, 8)
-            elif hour>16:
-                session = '5 mani mela class irukathu (mostly)'
+            if temp != "Sunday":
+                if hour<9:
+                    session = "Class usually starts at 9 AM"
+                elif hour == 9:
+                    session = sheet.cell_value(dayy, 1)
+                elif hour == 10:
+                    session = sheet.cell_value(dayy, 2)
+                elif hour == 11:
+                    session = sheet.cell_value(dayy, 3)
+                elif hour == 12:
+                    session = sheet.cell_value(dayy, 4)
+                elif hour == 13:
+                    session = "Lunch time! Go eat!"
+                elif hour == 14:
+                    session = sheet.cell_value(dayy, 6)
+                elif hour == 15:
+                    session = sheet.cell_value(dayy, 7)
+                elif hour == 16:
+                    session = sheet.cell_value(dayy, 8)
+                elif hour>16:
+                    session = '5 mani mela class irukathu (mostly)'
+                
             ########
         elif context.args[0] == "date":
             from datetime import date, datetime
@@ -99,6 +104,11 @@ def unknown(update, context):
 def echo(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=str(context.args))
     context.bot.send_message(chat_id=update.effective_chat.id, text="this command was confidential htf did u know?")
+    chat_id = update.message.chat_id
+    first_name = update.message.chat.first_name
+    last_name = update.message.chat.last_name
+    username = update.message.chat.username
+    print("chat_id : {} and firstname : {} lastname : {}  username {}". format(chat_id, first_name, last_name , username))
 #calling everytime /start is called
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
