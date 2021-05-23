@@ -101,14 +101,29 @@ def enna(update, context):
 # For errors
 def unknown(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
-def echo(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=str(context.args))
-    context.bot.send_message(chat_id=update.effective_chat.id, text="this command was confidential htf did u know?")
+def sollu(update, context):
+    msg = str(update.message.text)
+    start = 0
+    stop = 5
+    # Remove charactes from index 0 to 5
+    if len(msg) > stop :
+        msg = msg[0: start:] + msg[stop + 1::]
+    update.message.reply_text(msg)
+
+def whoami(update, context):
+    user = update.message.from_user
     chat_id = update.message.chat_id
     first_name = update.message.chat.first_name
     last_name = update.message.chat.last_name
     username = update.message.chat.username
-    print("chat_id : {} and firstname : {} lastname : {}  username {}". format(chat_id, first_name, last_name , username))
+    #user = update.effective_user
+    whoami = "chat_id : {}\n user_id : {}\nfirstname : {}\nlastname : {}\nusername : {}". format(chat_id,user['id'],first_name, last_name , user['username'])
+    #update.message.reply_markdown_v2(whoami)
+    #update.message.reply_markdown_v2(fr'Hi {user.mention_markdown_v2()}\!')    
+    #update.message.reply_markdown_v2(fr'chat_id \: {chat_id} and firstname \: {first_name} lastname \: {last_name}  username {username}')
+    #context.bot.send_message(chat_id=update.effective_chat.id, text=whoami)
+    update.message.reply_text(whoami)
+
 #calling everytime /start is called
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
@@ -121,9 +136,12 @@ dispatcher.add_handler(start_handler)
 #for enna command
 enna_handler = CommandHandler('enna', enna)
 dispatcher.add_handler(enna_handler)
-#for echo 
-echo_handler = CommandHandler('echo', echo)
-dispatcher.add_handler(echo_handler)
+#for sollu 
+sollu_handler = CommandHandler('sollu', sollu)
+dispatcher.add_handler(sollu_handler)
+#for whoami
+whoami_handler = CommandHandler('whoami', whoami)
+dispatcher.add_handler(whoami_handler)
 # for errors
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
