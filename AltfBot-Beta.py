@@ -2,7 +2,11 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 
 from datetime import datetime, time, date
-updater = Updater(token='1898176973:AAHDlqEBBegfpeTb5cJ1yo8lwxNvofWHkd0', use_context=True)
+TOKEN = None
+
+with open("token.txt") as f:
+    TOKEN = f.read().strip()
+updater = Updater(token=TOKEN, use_context=True)
 
 dispatcher = updater.dispatcher
 
