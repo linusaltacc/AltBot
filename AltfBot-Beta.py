@@ -96,7 +96,7 @@ def enna(update, context):
         elif context.args[0] == "time":
             from datetime import datetime,time
             now = datetime.now()
-            time = now.strftime("%H : %M") 
+            time = now.strftime("%I : %M %p") 
             #timestamp = datetime.now().strftime('%H:%M:%S.%f')
             session = str(time)
         else:
