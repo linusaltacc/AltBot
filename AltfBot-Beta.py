@@ -40,6 +40,7 @@ def enna(update, context):
             from datetime import time, datetime, date
             now = datetime.now()
             hour = int(now.strftime("%H"))
+            minute = int(now.strftime("%M"))
             date = date.today()
             day = date.strftime("%A")
             temp = "other Days"
@@ -63,42 +64,45 @@ def enna(update, context):
                 temp = "Sunday"
                 session = 'inaiku Leave uh'
             #example for understanding ::print(sheet.cell_value(monday, 8))
-            if temp != "Sunday":
-                if hour<9:
-                    session = "Class usually starts at 9 AM"
-                elif hour == 9:
-                    session = sheet.cell_value(dayy, 1)
-                elif hour == 10:
-                    session = sheet.cell_value(dayy, 2)
-                elif hour == 11:
-                    session = sheet.cell_value(dayy, 3)
-                elif hour == 12:
-                    session = sheet.cell_value(dayy, 4)
-                elif hour == 13:
-                    session = "Lunch time! Go eat!"
-                elif hour == 14:
-                    session = sheet.cell_value(dayy, 6)
-                elif hour == 15:
-                    session = sheet.cell_value(dayy, 7)
-                elif hour == 16:
-                    session = sheet.cell_value(dayy, 8)
-                elif hour>16:
-                    session = '5 mani mela class irukathu (mostly)'
-                
-            ########
-        elif context.args[0] == "date":
-            from datetime import date, datetime
-            date = datetime.now().strftime("%d-%m-%Y")
-            #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
-            session = str(date)
-        elif context.args[0] == "time":
-            from datetime import datetime,time
-            now = datetime.now()
-            time = now.strftime("%H : %M") 
-            #timestamp = datetime.now().strftime('%H:%M:%S.%f')
-            session = str(time)
-        else:
-            session = "puriyala"
+            if minute<45:
+                if temp != "Sunday":
+                    if hour<9:
+                        session = "Class usually starts at 9 AM"
+                    elif hour == 9:
+                        session = sheet.cell_value(dayy, 1)
+                    elif hour == 10:
+                        session = sheet.cell_value(dayy, 2)
+                    elif hour == 11:
+                        session = sheet.cell_value(dayy, 3)
+                    elif hour == 12:
+                        session = sheet.cell_value(dayy, 4)
+                    elif hour == 13:
+                        session = "Lunch time! Go eat!"
+                    elif hour == 14:
+                        session = sheet.cell_value(dayy, 6)
+                    elif hour == 15:
+                        session = sheet.cell_value(dayy, 7)
+                    elif hour == 16:
+                        session = sheet.cell_value(dayy, 8)
+                    elif hour>16:
+                        session = '5 mani mela class irukathu (mostly)'
+                    
+                    ########
+                elif context.args[0] == "date":
+                    from datetime import date, datetime
+                    date = datetime.now().strftime("%d-%m-%Y")
+                    #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
+                    session = str(date)
+                elif context.args[0] == "time":
+                    from datetime import datetime,time
+                    now = datetime.now()
+                    time = now.strftime("%H : %M") 
+                    #timestamp = datetime.now().strftime('%H:%M:%S.%f')
+                    session = str(time)
+                else:
+                    session = "puriyala"
+            else:
+                session = "Last class has been ended"
     except (IndexError, ValueError):
         context.bot.send_message(chat_id=update.effective_chat.id, text="/enna Command Arguments: \n\t1. class\n\t2. date\n\t3. time")
         session = "/enna command ku arguments onume pass panala!"
