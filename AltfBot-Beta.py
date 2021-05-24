@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 import os
 
-TOKEN = '1898176973:AAEYyE8QqVWsdDrupcfHQJ9me40cwq8bQuY'
+TOKEN = os.environ["TOKEN"]
 from datetime import datetime, time, date
 #TOKEN = None
 
