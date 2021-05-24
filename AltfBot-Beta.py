@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 import os
 
-TOKEN = os.environ["TOKEN"]
+TOKEN = '1898176973:AAEYyE8QqVWsdDrupcfHQJ9me40cwq8bQuY'
 from datetime import datetime, time, date
 #TOKEN = None
 
@@ -99,6 +99,10 @@ def enna(update, context):
             time = now.strftime("%I : %M %p") 
             #timestamp = datetime.now().strftime('%H:%M:%S.%f')
             session = str(time)
+        elif context.args[0] == "day":
+            from datetime import date
+            day = date.today()
+            session = str(day.strftime("%A"))
         else:
             session = "puriyala"
     except (IndexError, ValueError):
