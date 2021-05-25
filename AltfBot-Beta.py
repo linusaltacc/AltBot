@@ -188,7 +188,8 @@ def next(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=session)
 # For errors
 def unknown(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
+     msg = "correct aah sollu."
+     update.message.reply_text(msg)
 def sollu(update, context):
     msg = str(update.message.text)
     start = 0
