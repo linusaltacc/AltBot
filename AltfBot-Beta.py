@@ -76,7 +76,7 @@ def enna(update, context):
                 elif hour == 12:
                     session = sheet.cell_value(dayy, 4)
                 elif hour == 13:
-                    session = "Lunch time! Go eat!"
+                    session = "Lunch time! poi sapudu!"
                 elif hour == 14:
                     session = sheet.cell_value(dayy, 6)
                 elif hour == 15:
