@@ -224,10 +224,10 @@ dispatcher.add_handler(start_handler)
 #for enna command
 enna_handler = CommandHandler('enna', enna)
 dispatcher.add_handler(enna_handler)
-#for next command
-Sollu_handler = CommandHandler('sollu', sollu)
+#for sollu command
+sollu_handler = CommandHandler('sollu', sollu)
 dispatcher.add_handler(sollu_handler)
-#for sollu 
+#for next
 next_handler = CommandHandler('next', next)
 dispatcher.add_handler(next_handler)
 #for whoami
