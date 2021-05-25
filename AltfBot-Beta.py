@@ -225,7 +225,7 @@ dispatcher.add_handler(start_handler)
 enna_handler = CommandHandler('enna', enna)
 dispatcher.add_handler(enna_handler)
 #for next command
-enna_handler = CommandHandler('sollu', sollu)
+Sollu_handler = CommandHandler('sollu', sollu)
 dispatcher.add_handler(sollu_handler)
 #for sollu 
 next_handler = CommandHandler('next', next)
