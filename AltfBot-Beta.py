@@ -85,7 +85,7 @@ def enna(update, context):
                     session = sheet.cell_value(dayy, 8)
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly)'
-                if minute>45 and hour<15:
+                if minute>45 and hour<15 and hour>9:
                     session = session + " session has ended at " + str(hour) + ":" + str(minute)
             ########
         elif context.args[0] == "date":
