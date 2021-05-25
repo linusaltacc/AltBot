@@ -227,13 +227,13 @@ dispatcher.add_handler(enna_handler)
 #for sollu command
 sollu_handler = CommandHandler('sollu', sollu)
 dispatcher.add_handler(sollu_handler)
-#for next
+#for next handler 
 next_handler = CommandHandler('next', next)
 dispatcher.add_handler(next_handler)
-#for whoami
+#for whoami handler
 whoami_handler = CommandHandler('whoami', whoami)
 dispatcher.add_handler(whoami_handler)
-# for errors
+# for errors handler
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
 
