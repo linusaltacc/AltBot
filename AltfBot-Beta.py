@@ -183,7 +183,7 @@ def next(update, context):
         else:
             session = "puriyala"
     except (IndexError, ValueError):
-        context.bot.send_message(chat_id=update.effective_chat.id, text="/next Command Arguments: \n\t1. class")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="/next Command Arguments: \n\t class")
         session = "/next command ku arguments onume pass panala!"
     context.bot.send_message(chat_id=update.effective_chat.id, text=session)
 # For errors
