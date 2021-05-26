@@ -169,17 +169,7 @@ def next(update, context):
                     session = '5 mani mela class irukathu (mostly)'
                 
             ########
-        elif context.args[0] == "date":
-            from datetime import date, datetime
-            date = datetime.now().strftime("%d-%m-%Y")
-            #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
-            session = str(date)
-        elif context.args[0] == "time":
-            from datetime import datetime,time
-            now = datetime.now()
-            time = now.strftime("%H : %M") 
-            #timestamp = datetime.now().strftime('%H:%M:%S.%f')
-            session = str(time)
+        
         else:
             session = "puriyala"
     except (IndexError, ValueError):
