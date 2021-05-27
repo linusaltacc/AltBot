@@ -28,6 +28,46 @@ def beta(update, context):
     user = update.effective_user
     update.message.reply_markdown_v2(fr'{user.mention_markdown_v2()} You can Join the Beta Group through the link below\!')
     context.bot.send_message(chat_id=update.effective_chat.id, text="https://t.me/joinchat/ttfV8gOEzWljNTI1")
+def schedule(update, context):
+    wb = xlrd.open_workbook('classSchedulle.xls')
+    sheet = wb.sheet_by_index(0)
+    # Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
+    from datetime import time, datetime, date
+    now = datetime.now()
+    hour = int(now.strftime("%H"))
+    date = date.today()
+    day = date.strftime("%A")
+    temp = "other Days"
+    if day == 'Monday':
+        dayy = 1
+    elif day == 'Tuesday':
+        dayy = 2
+    elif day == 'Wednesday':
+        dayy = 3
+
+    elif day == 'Thursday':
+        dayy = 4
+
+    elif day == 'Friday':
+        dayy = 5
+
+    elif day == 'Saturday':
+        dayy = 6
+
+    else:
+        temp = "Sunday"
+        session = 'inaiku Leave uh'
+    #example for understanding ::print(sheet.cell_value(monday, 8))
+    if temp != "Sunday":
+        session1 = sheet.cell_value(dayy, 1)
+        session2 = sheet.cell_value(dayy, 2)
+        session3 = sheet.cell_value(dayy, 3)
+        session4 = sheet.cell_value(dayy, 4)
+        session5 = sheet.cell_value(dayy, 6)
+        session6 = sheet.cell_value(dayy, 7)
+        session7 = sheet.cell_value(dayy, 8)
+    format = f"session 1 : {session1}\n session 2: {session2}\n session 3: {session3}\n session 4 : {session4}\n session 5: {session5}\n session 6: {session6}\n session 7: {session7}"
+    context.bot.send_message(chat_id=update.effective_chat.id, text=format)   
 def enna(update, context):
     try:
         if context.args[0] == "class":
@@ -114,7 +154,7 @@ def next(update, context):
     try:
         if context.args[0] == "class":
             ########Code for schedule
-	   # import xlrd
+	        # import xlrd
             # To open Workbook
             wb = xlrd.open_workbook('classSchedulle.xls')
             sheet = wb.sheet_by_index(0)
@@ -224,6 +264,9 @@ dispatcher.add_handler(start_handler)
 #for enna command
 enna_handler = CommandHandler('enna', enna)
 dispatcher.add_handler(enna_handler)
+#for schedule command
+schedule_handler = CommandHandler('schedule', schedule)
+dispatcher.add_handler(schedule_handler)
 #for sollu command
 sollu_handler = CommandHandler('sollu', sollu)
 dispatcher.add_handler(sollu_handler)
