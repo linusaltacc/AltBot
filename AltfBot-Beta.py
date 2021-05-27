@@ -64,9 +64,7 @@ def schedule(update, context):
         session3 = sheet.cell_value(dayy, 3)
         session4 = sheet.cell_value(dayy, 4)
         session5 = sheet.cell_value(dayy, 6)
-        session6 = sheet.cell_value(dayy, 7)
-        session7 = sheet.cell_value(dayy, 8)
-    format = f"session 1 : {session1}\n session 2: {session2}\n session 3: {session3}\n session 4 : {session4}\n session 5: {session5}\n session 6: {session6}\n session 7: {session7}"
+    format = f"session 1 : {session1}\n session 2: {session2}\n session 3: {session3}\n session 4 : {session4}\n session 5: {session5}"
 <<<<<<< HEAD
     context.bot.send_message(chat_id=update.effective_chat.id, text=format)   
 =======
@@ -205,10 +203,6 @@ def next(update, context):
                     session = "Lunch time! Go eat!"
                 elif hour == 14:
                     session = sheet.cell_value(dayy, 6)
-                elif hour == 15:
-                    session = sheet.cell_value(dayy, 7)
-                elif hour == 16:
-                    session = sheet.cell_value(dayy, 8)
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly)'
                 
