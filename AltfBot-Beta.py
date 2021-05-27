@@ -120,7 +120,7 @@ def enna(update, context):
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly!)'
                 if minute>45 and hour<15 and hour>9:
-                    session = session + " session has ended at " + str(hour) + ":" + str(minute)
+                    session = session + " session has ended at " + str(hour) + ":" + str(45)
             ########
         elif context.args[0] == "date":
             from datetime import date, datetime
