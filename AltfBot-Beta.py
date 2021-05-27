@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 import os
-from extra import *
+from DateAndTime import *
 TOKEN = os.environ['TOKEN']
 
 # To open Workbook for class schedule
@@ -36,16 +36,12 @@ def schedule(update, context):
         dayy = 2
     elif day == 'Wednesday':
         dayy = 3
-
     elif day == 'Thursday':
         dayy = 4
-
     elif day == 'Friday':
         dayy = 5
-
     elif day == 'Saturday':
         dayy = 6
-
     else:
         temp = "Sunday"
         session = 'inaiku Leave uh'
