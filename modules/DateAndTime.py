@@ -9,7 +9,7 @@ def HourAs12():
 def HourAs24():
     return int(now.strftime("%H"))
 def Minute():
-    return str(now.strftime("%M"))
+    return int(now.strftime("%M"))
 def Date():
     return str(datetime.now().strftime("%d-%m-%Y"))
 def Day():

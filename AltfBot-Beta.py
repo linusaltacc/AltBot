@@ -1,12 +1,9 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 import os
-from DateAndTime import *
+from modules.DateAndTime import *
+from modules.Spreadsheet import *
 TOKEN = os.environ['TOKEN']
-
-# To open Workbook for class schedule
-wb = xlrd.open_workbook('classSchedulle.xls')
-sheet = wb.sheet_by_index(0)
 
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
@@ -57,44 +54,10 @@ def schedule(update, context):
 def enna(update, context):
     try:
         if context.args[0] == "class":
-            now, hour, minute, day = datetime.now(), int(HourAs24()), int(Minute()), Day() 
-            temp = "other Days"
-            if day == 'Monday':
-                dayy = 1
-            elif day == 'Tuesday':
-                dayy = 2
-            elif day == 'Wednesday':
-                dayy = 3
-            elif day == 'Thursday':
-                dayy = 4
-            elif day == 'Friday':
-                dayy = 5
-            elif day == 'Saturday':
-                dayy = 6
-            else:
-                temp = "Sunday"
-                session = 'inaiku Leave uh'
-            #example for understanding ::print(sheet.cell_value(monday, 8))
-            if temp != "Sunday":
-                if hour<9:
-                    session = "Class usually starts at 9 AM"
-                elif hour == 9:
-                    session = sheet.cell_value(dayy, 1)
-                elif hour == 10:
-                    session = sheet.cell_value(dayy, 2)
-                elif hour == 11:
-                    session = sheet.cell_value(dayy, 3)
-                elif hour == 12:
-                    session = sheet.cell_value(dayy, 4)
-                elif hour == 13:
-                    session = "Lunch time! poi sapudu!"
-                elif hour == 14:
-                    session = sheet.cell_value(dayy, 6)
-                elif hour>16:
-                    session = '5 mani mela class irukathu (mostly!)'
-                if minute>45 and hour != 13 and hour<15 and hour>9:
-                    session = session + " session has ended at " + str(hour) + ":" + str(minute)
-        
+            session = TimeTable()
+            hour, minute = HourAs24(), Minute()
+            if minute>45 and hour != 13 and hour<15 and hour>9:
+                session = session + " session has ended at " + str(hour) + ":" + str(minute)
         elif context.args[0] == "date":
             session = Date()
         elif context.args[0] == "time":
@@ -111,41 +74,7 @@ def enna(update, context):
 def next(update, context):
     try:
         if context.args[0] == "class":
-            now, hour, minute, day = datetime.now(), int(HourAs24()+1), int(Minute()), Day() 
-            temp = "other Days"
-            if day == 'Monday':
-                dayy = 1
-            elif day == 'Tuesday':
-                dayy = 2
-            elif day == 'Wednesday':
-                dayy = 3
-            elif day == 'Thursday':
-                dayy = 4
-            elif day == 'Friday':
-                dayy = 5
-            elif day == 'Saturday':
-                dayy = 6
-            else:
-                temp = "Sunday"
-                session = 'inaiku Leave uh'
-            #example for understanding ::print(sheet.cell_value(monday, 8))
-            if temp != "Sunday":
-                if hour<9:
-                    session = "Class usually starts at 9 AM"
-                elif hour == 9:
-                    session = sheet.cell_value(dayy, 1)
-                elif hour == 10:
-                    session = sheet.cell_value(dayy, 2)
-                elif hour == 11:
-                    session = sheet.cell_value(dayy, 3)
-                elif hour == 12:
-                    session = sheet.cell_value(dayy, 4)
-                elif hour == 13:
-                    session = "Lunch time! Go eat!"
-                elif hour == 14:
-                    session = sheet.cell_value(dayy, 6)
-                elif hour>16:
-                    session = '5 mani mela class irukathu (mostly)'
+            session = TimeTable()
         else:
             session = "puriyala"
     except (IndexError, ValueError):
