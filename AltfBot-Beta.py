@@ -1,15 +1,14 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 import os
+from extra import *
+TOKEN = os.environ['TOKEN']
 
-TOKEN = os.environ["TOKEN"]
-from datetime import datetime, time, date
-#TOKEN = None
+# To open Workbook for class schedule
+wb = xlrd.open_workbook('classSchedulle.xls')
+sheet = wb.sheet_by_index(0)
 
-"""with open("token.txt") as f:
-    TOKEN = f.read().strip()"""
 updater = Updater(token=TOKEN, use_context=True)
-
 dispatcher = updater.dispatcher
 
 #Just logging ignore..
@@ -29,14 +28,7 @@ def beta(update, context):
     update.message.reply_markdown_v2(fr'{user.mention_markdown_v2()} You can Join the Beta Group through the link below\!')
     context.bot.send_message(chat_id=update.effective_chat.id, text="https://t.me/joinchat/ttfV8gOEzWljNTI1")
 def schedule(update, context):
-    wb = xlrd.open_workbook('classSchedulle.xls')
-    sheet = wb.sheet_by_index(0)
-    # Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
-    from datetime import time, datetime, date
-    now = datetime.now()
-    hour = int(now.strftime("%H"))
-    date = date.today()
-    day = date.strftime("%A")
+    now, hour, minute, day = datetime.now(), int(HourAs24()), int(Minute()), Day()     
     temp = "other Days"
     if day == 'Monday':
         dayy = 1
@@ -57,7 +49,7 @@ def schedule(update, context):
     else:
         temp = "Sunday"
         session = 'inaiku Leave uh'
-    #example for understanding ::print(sheet.cell_value(monday, 8))
+    #example for understanding ::print(sheet.cell_value(Monday, 8))
     if temp != "Sunday":
         y = 0
         session = {}
@@ -69,18 +61,7 @@ def schedule(update, context):
 def enna(update, context):
     try:
         if context.args[0] == "class":
-            ########Code for schedule
-	        # import xlrd
-            # To open Workbook
-            wb = xlrd.open_workbook('classSchedulle.xls')
-            sheet = wb.sheet_by_index(0)
-            # Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
-            from datetime import time, datetime, date
-            now = datetime.now()
-            hour = int(now.strftime("%H"))
-            minute = int(now.strftime("%M"))
-            date = date.today()
-            day = date.strftime("%A")
+            now, hour, minute, day = datetime.now(), int(HourAs24()), int(Minute()), Day() 
             temp = "other Days"
             if day == 'Monday':
                 dayy = 1
@@ -88,16 +69,12 @@ def enna(update, context):
                 dayy = 2
             elif day == 'Wednesday':
                 dayy = 3
-
             elif day == 'Thursday':
                 dayy = 4
-
             elif day == 'Friday':
                 dayy = 5
-
             elif day == 'Saturday':
                 dayy = 6
-
             else:
                 temp = "Sunday"
                 session = 'inaiku Leave uh'
@@ -119,30 +96,15 @@ def enna(update, context):
                     session = sheet.cell_value(dayy, 6)
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly!)'
-<<<<<<< HEAD
-               
                 if minute>45 and hour != 13 and hour<15 and hour>9:
                     session = session + " session has ended at " + str(hour) + ":" + str(minute)
-=======
-                if minute>45 and hour<15 and hour>9:
-                    session = session + " session has ended at " + str(hour) + ":" + str(45)
->>>>>>> c6a6d8811cc70f63cb9584eb2cfa9c19965bd021
-            ########
+        
         elif context.args[0] == "date":
-            from datetime import date, datetime
-            date = datetime.now().strftime("%d-%m-%Y")
-            #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
-            session = str(date)
+            session = Date()
         elif context.args[0] == "time":
-            from datetime import datetime,time
-            now = datetime.now()
-            time = now.strftime("%I : %M %p") 
-            #timestamp = datetime.now().strftime('%H:%M:%S.%f')
-            session = str(time)
+            session = Time()
         elif context.args[0] == "day":
-            from datetime import date
-            day = date.today()
-            session = str(day.strftime("%A"))
+            session = Day()
         else:
             session = "puriyala"
     except (IndexError, ValueError):
@@ -153,18 +115,7 @@ def enna(update, context):
 def next(update, context):
     try:
         if context.args[0] == "class":
-            ########Code for schedule
-	        # import xlrd
-            # To open Workbook
-            wb = xlrd.open_workbook('classSchedulle.xls')
-            sheet = wb.sheet_by_index(0)
-            #Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
-            from datetime import time, datetime, date
-            now = datetime.now()
-            hour = int(now.strftime("%H"))
-            hour = hour+1
-            date = date.today()
-            day = date.strftime("%A")
+            now, hour, minute, day = datetime.now(), int(HourAs24()+1), int(Minute()), Day() 
             temp = "other Days"
             if day == 'Monday':
                 dayy = 1
@@ -172,16 +123,12 @@ def next(update, context):
                 dayy = 2
             elif day == 'Wednesday':
                 dayy = 3
-
             elif day == 'Thursday':
                 dayy = 4
-
             elif day == 'Friday':
                 dayy = 5
-
             elif day == 'Saturday':
                 dayy = 6
-
             else:
                 temp = "Sunday"
                 session = 'inaiku Leave uh'
@@ -203,9 +150,6 @@ def next(update, context):
                     session = sheet.cell_value(dayy, 6)
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly)'
-                
-            ########
-        
         else:
             session = "puriyala"
     except (IndexError, ValueError):
@@ -214,12 +158,11 @@ def next(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=session)
 # For errors
 def unknown(update, context):
-     msg = "correct aah sollu."
+     msg = "puriyala. \nI don't understand Hooman Beeing Languages SED Laip"
      update.message.reply_text(msg)
 def sollu(update, context):
     msg = str(update.message.text)
-    start = 0
-    stop = 5
+    start, stop = 0, 5
     # Remove charactes from index 0 to 5
     if len(msg) > stop :
         msg = msg[0: start:] + msg[stop + 1::]
@@ -233,44 +176,36 @@ def whoami(update, context):
     username = update.message.chat.username
     #user = update.effective_user
     whoami = "chat_id : {}\n user_id : {}\nfirstname : {}\nlastname : {}\nusername : {}". format(chat_id,user['id'],first_name, last_name , user['username'])
-    #update.message.reply_markdown_v2(whoami)
-    #update.message.reply_markdown_v2(fr'Hi {user.mention_markdown_v2()}\!')    
-    #update.message.reply_markdown_v2(fr'chat_id \: {chat_id} and firstname \: {first_name} lastname \: {last_name}  username {username}')
-    #context.bot.send_message(chat_id=update.effective_chat.id, text=whoami)
     update.message.reply_text(whoami)
 
 #calling everytime /start is called
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
-#for hi command
+#listens for hi command
 start_handler = CommandHandler('hi', hi)
 dispatcher.add_handler(start_handler)
-#for beta command
+#listens for beta command
 start_handler = CommandHandler('beta', beta)
 dispatcher.add_handler(start_handler)
-#for enna command
+#listens for enna command
 enna_handler = CommandHandler('enna', enna)
 dispatcher.add_handler(enna_handler)
-#for schedule command
+#listens for schedule command
 schedule_handler = CommandHandler('schedule', schedule)
 dispatcher.add_handler(schedule_handler)
-#for sollu command
+#listens for sollu command
 sollu_handler = CommandHandler('sollu', sollu)
 dispatcher.add_handler(sollu_handler)
-#for next handler 
+#listens for next handler 
 next_handler = CommandHandler('next', next)
 dispatcher.add_handler(next_handler)
-#for whoami handler
+#listens for whoami handler
 whoami_handler = CommandHandler('whoami', whoami)
 dispatcher.add_handler(whoami_handler)
-# for errors handler
+#listens for errors handler
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
 
-
+#start listening for messages starting with "/" 
 updater.start_polling()
-
-
-
-#-----------------------------------------------------------#
-#seperate functions bellow
+#Bot only has Access to msgs staring with "/"
