@@ -59,19 +59,13 @@ def schedule(update, context):
         session = 'inaiku Leave uh'
     #example for understanding ::print(sheet.cell_value(monday, 8))
     if temp != "Sunday":
-        session1 = sheet.cell_value(dayy, 1)
-        session2 = sheet.cell_value(dayy, 2)
-        session3 = sheet.cell_value(dayy, 3)
-        session4 = sheet.cell_value(dayy, 4)
-        session5 = sheet.cell_value(dayy, 6)
-        session6 = sheet.cell_value(dayy, 7)
-        session7 = sheet.cell_value(dayy, 8)
-    format = f"session 1 : {session1}\n session 2: {session2}\n session 3: {session3}\n session 4 : {session4}\n session 5: {session5}\n session 6: {session6}\n session 7: {session7}"
-<<<<<<< HEAD
-    context.bot.send_message(chat_id=update.effective_chat.id, text=format)   
-=======
+        y = 0
+        session = {}
+        for x in range(8):
+            y += 1
+            session[x] = sheet.cell_value(dayy, y)
+    format = f"session 1 : {session[0]}\n session 2: {session[1]}\n session 3: {session[2]}\n session 4: {session[3]}\n session 5: {session[5]}\n session 6: {session[6]}\n session 7: {session[7]}"
     context.bot.send_message(chat_id=update.effective_chat.id, text=format)
->>>>>>> 0b8669ebf7fc9f19a8419abb2fe9b657b56ab12d
 def enna(update, context):
     try:
         if context.args[0] == "class":
