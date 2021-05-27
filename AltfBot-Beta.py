@@ -67,7 +67,11 @@ def schedule(update, context):
         session6 = sheet.cell_value(dayy, 7)
         session7 = sheet.cell_value(dayy, 8)
     format = f"session 1 : {session1}\n session 2: {session2}\n session 3: {session3}\n session 4 : {session4}\n session 5: {session5}\n session 6: {session6}\n session 7: {session7}"
+<<<<<<< HEAD
     context.bot.send_message(chat_id=update.effective_chat.id, text=format)   
+=======
+    context.bot.send_message(chat_id=update.effective_chat.id, text=format)
+>>>>>>> 0b8669ebf7fc9f19a8419abb2fe9b657b56ab12d
 def enna(update, context):
     try:
         if context.args[0] == "class":
@@ -116,7 +120,7 @@ def enna(update, context):
                 elif hour == 12:
                     session = sheet.cell_value(dayy, 4)
                 elif hour == 13:
-                    session = "Lunch time! Go eat!"
+                    session = "Lunch time! poi sapudu!"
                 elif hour == 14:
                     session = sheet.cell_value(dayy, 6)
                 elif hour == 15:
@@ -124,7 +128,7 @@ def enna(update, context):
                 elif hour == 16:
                     session = sheet.cell_value(dayy, 8)
                 elif hour>16:
-                    session = '5 mani mela class irukathu (mostly)'
+                    session = '5 mani mela class irukathu (mostly!)'
                 if minute>45 and hour<15 and hour>9:
                     session = session + " session has ended at " + str(hour) + ":" + str(minute)
             ########
@@ -209,26 +213,17 @@ def next(update, context):
                     session = '5 mani mela class irukathu (mostly)'
                 
             ########
-        elif context.args[0] == "date":
-            from datetime import date, datetime
-            date = datetime.now().strftime("%d-%m-%Y")
-            #context.bot.send_message(chat_id=update.effective_chat.id, text=str(datentime))
-            session = str(date)
-        elif context.args[0] == "time":
-            from datetime import datetime,time
-            now = datetime.now()
-            time = now.strftime("%H : %M") 
-            #timestamp = datetime.now().strftime('%H:%M:%S.%f')
-            session = str(time)
+        
         else:
             session = "puriyala"
     except (IndexError, ValueError):
-        context.bot.send_message(chat_id=update.effective_chat.id, text="/next Command Arguments: \n\t1. class")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="/next Command Arguments: \n\t class")
         session = "/next command ku arguments onume pass panala!"
     context.bot.send_message(chat_id=update.effective_chat.id, text=session)
 # For errors
 def unknown(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
+     msg = "correct aah sollu."
+     update.message.reply_text(msg)
 def sollu(update, context):
     msg = str(update.message.text)
     start = 0
