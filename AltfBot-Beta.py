@@ -61,7 +61,7 @@ def schedule(update, context):
     if temp != "Sunday":
         y = 0
         session = {}
-        for x in range(8):
+        for x in range(6):
             y += 1
             session[x] = sheet.cell_value(dayy, y)
     format = f"session 1 : {session[0]}\nsession 2: {session[1]}\nsession 3: {session[2]}\nsession 4: {session[3]}\nsession 5: {session[5]}"
