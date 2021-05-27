@@ -61,10 +61,10 @@ def schedule(update, context):
     if temp != "Sunday":
         y = 0
         session = {}
-        for x in range(8):
+        for x in range(6):
             y += 1
             session[x] = sheet.cell_value(dayy, y)
-    format = f"session 1 : {session[0]}\nsession 2: {session[1]}\nsession 3: {session[2]}\nsession 4: {session[3]}\nsession 5: {session[5]}\nsession 6: {session[6]}\nsession 7: {session[7]}"
+    format = f"session 1 : {session[0]}\nsession 2: {session[1]}\nsession 3: {session[2]}\nsession 4: {session[3]}\nsession 5: {session[5]}"
     context.bot.send_message(chat_id=update.effective_chat.id, text=format)
 def enna(update, context):
     try:
@@ -117,15 +117,16 @@ def enna(update, context):
                     session = "Lunch time! poi sapudu!"
                 elif hour == 14:
                     session = sheet.cell_value(dayy, 6)
-                elif hour == 15:
-                    session = sheet.cell_value(dayy, 7)
-                elif hour == 16:
-                    session = sheet.cell_value(dayy, 8)
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly!)'
+<<<<<<< HEAD
                
                 if minute>45 and hour != 13 and hour<15 and hour>9:
                     session = session + " session has ended at " + str(hour) + ":" + str(minute)
+=======
+                if minute>45 and hour<15 and hour>9:
+                    session = session + " session has ended at " + str(hour) + ":" + str(45)
+>>>>>>> c6a6d8811cc70f63cb9584eb2cfa9c19965bd021
             ########
         elif context.args[0] == "date":
             from datetime import date, datetime
@@ -200,10 +201,6 @@ def next(update, context):
                     session = "Lunch time! Go eat!"
                 elif hour == 14:
                     session = sheet.cell_value(dayy, 6)
-                elif hour == 15:
-                    session = sheet.cell_value(dayy, 7)
-                elif hour == 16:
-                    session = sheet.cell_value(dayy, 8)
                 elif hour>16:
                     session = '5 mani mela class irukathu (mostly)'
                 
