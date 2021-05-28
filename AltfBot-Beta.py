@@ -3,7 +3,7 @@ import xlrd
 import os
 from modules.DateAndTime import *
 from modules.Spreadsheet import *
-TOKEN = '1811430046:AAGhfyKWbRP4_FcPqOcU_r7vtZ_xEm4T4dQ'
+TOKEN = os.environ['TOKEN']
 
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
