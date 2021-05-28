@@ -4,8 +4,11 @@ import xlrd
 wb = xlrd.open_workbook('classSchedulle.xls')
 sheet = wb.sheet_by_index(0)
 
-def TimeTable():
-    now, hour, minute, day = datetime.now(), int(HourAs24()), int(Minute()), Day() 
+def TimeTable(args):
+    if args == 0:
+        now, hour, minute, day = datetime.now(), int(HourAs24()), int(Minute()), Day()
+    else:
+        now, hour, minute, day = datetime.now(), int(HourAs24()+1), int(Minute()), Day()         
     temp = "other Days"
     if day == 'Monday':
         dayy = 1

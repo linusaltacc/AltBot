@@ -3,7 +3,7 @@ import xlrd
 import os
 from modules.DateAndTime import *
 from modules.Spreadsheet import *
-TOKEN = os.environ['TOKEN']
+TOKEN = '1811430046:AAGhfyKWbRP4_FcPqOcU_r7vtZ_xEm4T4dQ'
 
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
@@ -11,7 +11,7 @@ dispatcher = updater.dispatcher
 #Just logging ignore..
 import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
-
+#default args value, usefull if needed to pass as an argument
 def start(update, context):
     user = update.effective_user
     update.message.reply_markdown_v2(fr'Hello {user.mention_markdown_v2()}\!')
@@ -54,7 +54,7 @@ def schedule(update, context):
 def enna(update, context):
     try:
         if context.args[0] == "class":
-            session = TimeTable()
+            session = TimeTable(0)
             hour, minute = HourAs24(), Minute()
             if minute>45 and hour != 13 and hour<15 and hour>9:
                 session = session + " session has ended at " + str(hour) + ":" + str(minute)
@@ -74,7 +74,7 @@ def enna(update, context):
 def next(update, context):
     try:
         if context.args[0] == "class":
-            session = TimeTable()
+            session = TimeTable(1)
         else:
             session = "puriyala"
     except (IndexError, ValueError):
