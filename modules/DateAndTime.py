@@ -13,9 +13,8 @@ def HourAs24():
 def Minute():
     now = datetime.now()
     return int(now.strftime("%M"))
+def Day():
+    return str(date.today().strftime("%A"))
 def Date():
     return str(datetime.now().strftime("%d-%m-%Y"))
-def Day():
-    date = date.today()
-    return str(date.strftime("%A"))
 #print(Time(), HourAs12(),HourAs24(), Minute(),Date(),Day())
