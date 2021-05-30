@@ -1,3 +1,4 @@
+from telegram import KeyboardButton, ReplyKeyboardMarkup, update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import xlrd
 import os
@@ -102,10 +103,17 @@ def whoami(update, context):
     #user = update.effective_user
     whoami = "chat_id : {}\n user_id : {}\nfirstname : {}\nlastname : {}\nusername : {}". format(chat_id,user['id'],first_name, last_name , user['username'])
     update.message.reply_text(whoami)
+def help(update, context):
+    kb = [[KeyboardButton('/enna class')],[KeyboardButton('/next class')],[KeyboardButton('/enna time')],[KeyboardButton('/schedule')]]
+    kb_markup = ReplyKeyboardMarkup(kb)
+    context.bot.send_message(chat_id=update.message.chat_id,text="your message",reply_markup=kb_markup)
 
 #calling everytime /start is called
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
+#calling everytime /help is called
+help_handler = CommandHandler('help', help)
+dispatcher.add_handler(help_handler)
 #listens for hi command
 start_handler = CommandHandler('hi', hi)
 dispatcher.add_handler(start_handler)
