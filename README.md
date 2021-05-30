@@ -30,11 +30,14 @@ cd AltBot
 pip3 install -r requirements.txt
 ```
 4. Change TOKEN to your API Key in `AltfBot.py`
+
 FROM 
+
 ```python
 TOKEN = os.environ['TOKEN']
 ```
-TO 
+TO
+
 ```python
 TOKEN = 'PUT:YOUR_API_KEY_HERE'
 ```
