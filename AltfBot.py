@@ -49,7 +49,7 @@ def schedule(update, context):
         for x in range(6):
             y += 1
             session[x] = sheet.cell_value(dayy, y)
-    format = f"session 1 : {session[0]}\nsession 2: {session[1]}\nsession 3: {session[2]}\nsession 4: {session[3]}\nsession 5: {session[5]}"
+        format = f"session 1 : {session[0]}\nsession 2: {session[1]}\nsession 3: {session[2]}\nsession 4: {session[3]}\nsession 5: {session[5]}"
     context.bot.send_message(chat_id=update.effective_chat.id, text=format)
 def enna(update, context):
     try:
