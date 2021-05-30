@@ -21,7 +21,7 @@ You need to have python3 and pip installed to run the code.
 ```sh
 git clone https://github.com/linusaltacc/AltBot.git
 ```
-cd cloned to Directory
+cd to cloned Directory
 ```sh
 cd AltBot
 ```
