@@ -12,7 +12,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-You need to have python3 and pip installed to run the code.
+You need to have python3, pip and git installed to run the code.
 
 ### Installation
 
