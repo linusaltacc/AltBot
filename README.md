@@ -1,7 +1,7 @@
 <h3 align="center">ALTFBOT</h3>
 
 
-##A Telegram Bot!
+## A Telegram Bot!
 
 
 <!-- GETTING STARTED -->
