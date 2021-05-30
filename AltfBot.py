@@ -41,7 +41,7 @@ def schedule(update, context):
         dayy = 6
     else:
         temp = "Sunday"
-        session = 'inaiku Leave uh'
+        format = 'inaiku Leave uh'
     #example for understanding ::print(sheet.cell_value(Monday, 8))
     if temp != "Sunday":
         y = 0
