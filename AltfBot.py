@@ -58,7 +58,7 @@ def enna(update, context):
             session = TimeTable(0)
             hour, minute = HourAs24(), Minute()
             if minute>45 and hour != 13 and hour<15 and hour>9:
-                session = session + " session has ended at " + str(hour) + ":" + str(minute)
+                session = session + " session has ended at " + str(hour) + ":" + str(45)
         elif context.args[0] == "date":
             session = Date()
         elif context.args[0] == "time":
