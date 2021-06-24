@@ -1,1 +1,1 @@
-worker: python3 AltfBot.py
+worker: python AltfBot.py
