@@ -5,7 +5,7 @@ import os
 from modules.DateAndTime import *
 from modules.Spreadsheet import *
 from modules.joke import *
-TOKEN = '1898176973:AAF4IB2mqUkkR_xKQgvyRigfemscYjW-67A'
+TOKEN = os.environ['TOKEN']
 
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
