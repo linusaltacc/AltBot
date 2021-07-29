@@ -4,7 +4,8 @@ import xlrd
 import os
 from modules.DateAndTime import *
 from modules.Spreadsheet import *
-TOKEN = os.environ['TOKEN']
+from modules.joke import *
+TOKEN = '1898176973:AAF4IB2mqUkkR_xKQgvyRigfemscYjW-67A'
 
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
@@ -94,6 +95,8 @@ def sollu(update, context):
         msg = msg[0: start:] + msg[stop + 1::]
     update.message.reply_text(msg)
 
+def joke(update, context):
+    update.message.reply_text(joke_api())
 def whoami(update, context):
     user = update.message.from_user
     chat_id = update.message.chat_id
@@ -111,6 +114,9 @@ def help(update, context):
 #calling everytime /start is called
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
+#joke handler
+joke_handler = CommandHandler('joke', joke)
+dispatcher.add_handler(joke_handler)
 #calling everytime /help is called
 help_handler = CommandHandler('help', help)
 dispatcher.add_handler(help_handler)
