@@ -1,3 +1,4 @@
 python-telegram-bot==12.7
 xlrd==2.0.1
 python-dateutil
+requests
