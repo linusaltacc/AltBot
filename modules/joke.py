@@ -1,5 +1,5 @@
 import requests
-joke_apis = "https://sv443.net/jokeapi/v2/joke/any"
+joke_apis = "https://v2.jokeapi.dev/joke/Programming,Pun"
 
 # gets json datas from joke_apis
 
