@@ -97,6 +97,14 @@ def sollu(update, context):
 
 def joke(update, context):
     update.message.reply_text(joke_api())
+
+def Google(update,context):
+    msg = str(update.message.text)
+    start, stop = 0, 6
+    # Remove charactes from index 0 to 5
+    if len(msg) > stop :
+        msg = msg[0: start:] + msg[stop + 1::]
+    update.message.reply_text(google(msg))
 def whoami(update, context):
     user = update.message.from_user
     chat_id = update.message.chat_id
@@ -135,6 +143,9 @@ dispatcher.add_handler(schedule_handler)
 #listens for sollu command
 sollu_handler = CommandHandler('sollu', sollu)
 dispatcher.add_handler(sollu_handler)
+#listens for google command
+google_handler = CommandHandler('google', Google)
+dispatcher.add_handler(google_handler)
 #listens for next handler 
 next_handler = CommandHandler('next', next)
 dispatcher.add_handler(next_handler)
