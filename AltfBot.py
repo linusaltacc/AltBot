@@ -5,6 +5,7 @@ import os
 from modules.DateAndTime import *
 from modules.Spreadsheet import *
 from modules.joke import *
+from modules.google import *
 TOKEN = os.environ['TOKEN']
 
 updater = Updater(token=TOKEN, use_context=True)
