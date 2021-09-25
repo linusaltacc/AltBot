@@ -106,6 +106,17 @@ def Google(update,context):
     if len(msg) > stop :
         msg = msg[0: start:] + msg[stop + 1::]
     update.message.reply_text(google(msg))
+
+def calc(update,context):
+    msg = str(update.message.text)
+    start, stop = 0, 4
+    # Remove charactes from index 0 to 5
+    if len(msg) > stop :
+        msg = msg[0: start:] + msg[stop + 1::]
+    try:
+        update.message.reply_text(eval(msg))
+    except:
+        update.message.reply_text("Please don't use letters in calc!")
 def whoami(update, context):
     user = update.message.from_user
     chat_id = update.message.chat_id
@@ -147,6 +158,9 @@ dispatcher.add_handler(sollu_handler)
 #listens for google command
 google_handler = CommandHandler('google', Google)
 dispatcher.add_handler(google_handler)
+#listens for calc command
+calc_handler = CommandHandler('calc', calc)
+dispatcher.add_handler(calc_handler)
 #listens for next handler 
 next_handler = CommandHandler('next', next)
 dispatcher.add_handler(next_handler)
