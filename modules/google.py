@@ -10,8 +10,7 @@ def google(q):
 	request_result = requests.get( url )
 	
 	# Pulling HTTP data from internet 
-	soup = bs4.BeautifulSoup( request_result.text 
-							, "html.parser" )
+	soup = bs4.BeautifulSoup( request_result.text, "html.parser" )
 	
 	result = soup.find( "div" , class_='BNeawe' ).text 
 		
